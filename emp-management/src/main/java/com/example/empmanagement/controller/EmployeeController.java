@@ -18,6 +18,16 @@ public class EmployeeController {
         model.addAttribute("employees",emplyeeService.findAll());
         return "home";
     }
+    @GetMapping("/save")
+    public String save(Model model){
+        model.addAttribute("employee",new Employee());
+        return "save";
+    }
+    @PostMapping("/saveProcess")
+    public String saveProcess(@ModelAttribute Employee employee){
+        emplyeeService.save(employee);
+        return "redirect:/home";
+    }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id){
@@ -44,4 +54,5 @@ public class EmployeeController {
         emplyeeService.save(employee1);
         return "redirect:/home";
     }
+
 }
