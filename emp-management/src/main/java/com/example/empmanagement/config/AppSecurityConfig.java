@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @Configuration
 public class AppSecurityConfig {
@@ -42,8 +44,12 @@ public class AppSecurityConfig {
                                 .loginPage("/login")
                                 .loginProcessingUrl("/processLogin")
                                 .permitAll()
+                )
+                .logout(logout->
+                        logout.permitAll()
                 );
         return http.build();
 
     }
+
 }
